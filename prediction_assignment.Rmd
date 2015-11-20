@@ -1,0 +1,54 @@
+---
+title: "Prediction Assignment"
+author: "Scott Brenstuhl"
+date: "November 15, 2015"
+output: html_document
+---
+```{r}
+library(caret)
+library(ggplot2)
+library(doMC)
+```
+
+
+```{r cache=TRUE}
+testing <- read.csv(file = 'pml-testing.csv')
+# Set blanks as NA for cleaner explotation
+training <- read.csv(file = 'pml-training.csv', na.strings = c('','NA'))
+```
+
+```{r, echo=FALSE}
+library(parallel)
+
+View(head(training,100))
+View(testing)
+names(training)
+training$classe
+```
+
+```{r}
+
+nacols <- function(df) {
+    colnames(df)[!unlist(lapply(df, function(x) any(is.na(x))))]
+}
+
+complete_cols <- nacols(training)
+
+incomplete_cols <- setdiff(names(training),comp_cols)
+
+# check that none of the columns are being dropped without
+# a significant amount of missing data
+View(head(training[incomplete_cols],500))
+
+length(complete_cols)
+
+```
+
+
+```{r}
+
+```
+
+
+
+#does removing new window = yes improve results?
