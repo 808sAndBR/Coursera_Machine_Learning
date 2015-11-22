@@ -73,6 +73,8 @@ p<- ggplot(data = melt(suspect[2:6]), aes(x=variable, y=value)) + geom_boxplot(a
 ggplotly(p)
 ```
 
+(Note: Plotly open sourced their full stack this week so I wanted to play with it, labels should appear as you hover over the boxes above. Check out their R client here:https://plot.ly/r/)
+
 Taking a closer look at the suspect values from before it looks like something is definitely off with the magnet_dumbbell_y that scored -3600. It also turns out that the outlier value for gyros_forearm_y, gyros_forearm_z, gyros_dumbbell_z, gyros_dumbbell_x all came from the same observation. I removed both of these rows but didn't remove any because of the magnet_belt_x values since its max doesn't look out of place at all.
 
 ```{r}
